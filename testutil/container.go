@@ -52,9 +52,11 @@ func CreateHTTPBinContainer(t *testing.T) string {
 		if err != nil {
 			return err
 		}
-		if _, err := http.Get(u.String()); err != nil {
+		resp, err := http.Get(u.String())
+		if err != nil {
 			return err
 		}
+		_ = resp.Body.Close()
 		return nil
 	}); err != nil {
 		t.Fatalf("Could not connect to database: %s", err)

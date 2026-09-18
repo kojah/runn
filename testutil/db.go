@@ -18,6 +18,9 @@ func SQLite(t *testing.T) (*sql.DB, string) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	if err := p.Close(); err != nil {
+		t.Fatal(err)
+	}
 	t.Cleanup(func() {
 		_ = os.Remove(p.Name()) //nolint:gosec
 	})
